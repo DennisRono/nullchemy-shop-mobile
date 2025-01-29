@@ -1,21 +1,45 @@
-import { Text, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
+import Header from '@/components/header'
+import ImageSlider from '@/components/image-slider'
+import CategorySlider from '@/components/category-slider'
+import ProductCard from '@/components/product-card'
 
 export default function TabOneScreen() {
+  const recentProducts = [
+    {
+      id: 1,
+      image:
+        'https://res.cloudinary.com/dkazrhnxq/image/upload/f_auto,q_auto/v1/nullcommerce/66c1afffef7849e45ef6dab9/qbqovvff8rih3wq6kvf0',
+      title: "Men's Leather Jacket",
+      price: '19,237.50',
+    },
+  ]
+
   return (
-    <View className="flex-1 h-full justify-center items-center p-5 gap-y-5">
-      <Text className="text-4xl font-extrabold text-[#34a0ff]">Hello World</Text>
+    <View className="flex-1 bg-white">
+      <Header />
+      <ScrollView className="flex-1 p-4">
+        <ImageSlider />
 
-      <View className="h-[1] w-full bg-gray-300 dark:bg-gray-700" />
+        <View className="my-6">
+          <CategorySlider title="Computing" />
+        </View>
 
-      <View className="gap-y-10 justify-center items-center">
-        <Text className="text-lg text-center text-gray-600 dark:text-gray-400">
-          This is an <Text className="font-extrabold text-[#2e78b7]">Expo </Text> 
-          Template using <Text className="font-semibold text-[#2e78b7]">Context Provider </Text> 
-          with <Text className="font-semibold text-[#2e78b7]">expo-secure-store</Text> to persist user session on the device.
-        </Text>
+        <View className="mb-6">
+          <CategorySlider title="Recently Added" />
+        </View>
 
-        <Text className="text-gray-800 dark:text-gray-200 text-sm">Created by <Text className="font-extrabold text-[#2e78b7]">Anda Hanise</Text></Text>
-      </View>
+        <View className="flex-row flex-wrap justify-between">
+          {recentProducts.map((product) => (
+            <ProductCard
+              key={product.id}
+              image={product.image}
+              title={product.title}
+              price={product.price}
+            />
+          ))}
+        </View>
+      </ScrollView>
     </View>
   )
 }

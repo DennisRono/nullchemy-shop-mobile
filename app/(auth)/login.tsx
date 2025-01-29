@@ -7,19 +7,16 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 import { Link } from 'expo-router'
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const navigation = useNavigation()
   const { signIn } = useSession()
 
   const handleLogin = () => {
-    // Implement login logic here
-    console.log('Login with:', email, password)
+    signIn()
   }
 
   const handleSocialLogin = (platform: string) => {
